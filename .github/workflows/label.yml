@@ -1,0 +1,39 @@
+name: PR Labeler based on commit messages
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Install Dependencies
+        run: |
+          cd .github/scripts
+          npm install @octokit/core
+          npm install @actions/github
+
+      - name: Find the number of this PR
+        uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          # Can be "open", "closed", or "all".  Defaults to "open".
+          state: open
+
+      - name: Run labeler script
+        run: node .github/scripts/labeler.js
+        env:
+          PR_NUMBER: ${{ steps.findPr.outputs.pr }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
