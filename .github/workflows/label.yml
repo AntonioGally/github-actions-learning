@@ -24,7 +24,15 @@ jobs:
           npm install @octokit/core
           npm install @actions/github
 
+      - name: Find the number of this PR
+        uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          # Can be "open", "closed", or "all".  Defaults to "open".
+          state: open
+
       - name: Run labeler script
         run: node .github/scripts/labeler.js
         env:
+          PR: ${{ steps.findPr.outputs.pr }}
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
