@@ -34,5 +34,5 @@ jobs:
       - name: Run labeler script
         run: node .github/scripts/labeler.js
         env:
-          PR: ${{ steps.findPr.outputs.pr }}
+          PR_NUMBER: ${{ steps.findPr.outputs.pr }}
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
