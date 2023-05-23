@@ -20,6 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          cd .github/scripts
           npm install @octokit/core
           npm install @actions/github
 
