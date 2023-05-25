@@ -9,7 +9,7 @@ on:
 jobs:
   labeler:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.base.ref != 'develop' && github.event.pull_request.base.ref != 'cloud002'
+    if: ${{github.event.pull_request.base.ref != 'develop' && github.event.pull_request.base.ref != 'cloud002'}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,4 +29,3 @@ jobs:
         run: node .github/scripts/labeler.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
