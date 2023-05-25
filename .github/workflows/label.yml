@@ -1,10 +1,13 @@
 name: PR Labeler based on commit messages
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
+  workflow_call:
+    inputs:
+      inputName:
+        required: true
+        type: string
+      booleanInputName:
+        required: true
+        type: boolean
 
 jobs:
   labeler:
