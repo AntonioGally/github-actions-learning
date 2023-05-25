@@ -10,6 +10,7 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const owner = "AntonioGally";
 const repo = "github-actions-learning";
 const pull_number = context.payload.pull_request.number;
+const branch_name = context.payload.pull_request.head.label;
 
 // Define a mapping from commit type to label
 const commitTypeToLabel = {
@@ -20,7 +21,8 @@ const commitTypeToLabel = {
     perf: 'Performance',
     refactor: 'Refactor',
     test: 'Tests',
-    build: 'Build'
+    build: 'Build',
+    itsm: 'ITSM'
     // Add more mappings as necessary
 };
 
@@ -51,6 +53,8 @@ getCommitMessages().then(commitMessages => {
             if (label) {
                 applyLabel(label);
             }
+        } else if (branch_name.indexOf("itsm") > -1) {
+            applyLabel(commitTypeToLabel["itsm"]);
         }
     });
 }).catch(console.error);
