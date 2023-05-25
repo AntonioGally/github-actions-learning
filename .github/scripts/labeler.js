@@ -53,7 +53,8 @@ getCommitMessages().then(commitMessages => {
             if (label) {
                 applyLabel(label);
             }
-        } else if (branch_name.indexOf("itsm") > -1) {
+        }
+        if (branch_name.indexOf("itsm") > -1) {
             applyLabel(commitTypeToLabel["itsm"]);
         }
     });
