@@ -1,4 +1,7 @@
 const { Octokit } = require("@octokit/core");
+const github = require('@actions/github');
+
+const context = github.context;
 
 // Create a new Octokit instance
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -6,7 +9,7 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 // Extract the relevant information from the GitHub Actions context
 const owner = "AntonioGally";
 const repo = "github-actions-learning";
-const pull_number = process.env.PR_NUMBER;
+const pull_number = context.payload.pull_request.number;
 
 // Define a mapping from commit type to label
 const commitTypeToLabel = {
