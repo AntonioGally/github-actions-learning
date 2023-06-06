@@ -29,4 +29,3 @@ jobs:
         run: node .github/scripts/labeler.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CLICKUP_STATUS: ${{inputs.clickUpStatus}}
