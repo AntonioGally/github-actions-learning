@@ -2,7 +2,6 @@ const { Octokit } = require("@octokit/core");
 const github = require('@actions/github');
 
 const context = github.context;
-
 // Create a new Octokit instance
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
