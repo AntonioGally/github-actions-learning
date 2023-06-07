@@ -1,5 +1,5 @@
 name: 🧾 Release notes
-description: Add a new update to release notes
+description: Adicione uma nova linha à nossa planilha de release notes
 title: Release notes update
 labels: [Release notes]
 body:
