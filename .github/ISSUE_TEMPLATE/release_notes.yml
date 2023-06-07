@@ -7,13 +7,12 @@ body:
     attributes:
       label: Área
       description: O update está relacionado à qual área?
-      value: "Interface"
+      placeholder: Interface
   - type: input
     attributes:
       label: Versão
       description: Em qual versão esse release se encontra?
       placeholder: v2.0.0
-      value: "-"
   - type: dropdown
     attributes:
       label: Alvo
@@ -39,7 +38,7 @@ body:
   - type: input
     attributes:
       label: Origem
-      description: Origem da demanda dessa release
+      description: Houve algum cliente fazendo essa requisição?
       placeholder: Interno
 
        
