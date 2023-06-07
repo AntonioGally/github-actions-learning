@@ -1,0 +1,45 @@
+name: 🧾 Release notes
+description: Add a new update to release notes
+title: Release notes update
+labels: [Release notes]
+body:
+  - type: input
+    attributes:
+      label: Área
+      description: O update está relacionado à qual área?
+      value: "Interface"
+  - type: input
+    attributes:
+      label: Versão
+      description: Em qual versão esse release se encontra?
+      placeholder: v2.0.0
+      value: "-"
+  - type: dropdown
+    attributes:
+      label: Alvo
+      description: Qual o alvo desse release?
+      options:
+        - Externo
+        - Interno
+  - type: input
+    attributes:
+      label: Tipo
+      description: Tipo de release
+      placeholder: Patch - Nova Feature
+  - type: input
+    attributes:
+      label: Título
+      description: Título da release
+      placeholder: Nova tela de xpto
+  - type: textarea
+    attributes:
+      label: Descrição
+      description: Descreva essa release
+      placeholder: Foi criada uma nova tela de xpto na área de admin
+  - type: input
+    attributes:
+      label: Origem
+      description: Origem da demanda dessa release
+      placeholder: Interno
+
+       
