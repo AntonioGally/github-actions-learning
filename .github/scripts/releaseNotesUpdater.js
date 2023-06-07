@@ -16,9 +16,7 @@ const formMap = {
 }
 
 async function getValuesFromIssue() {
-    const issueDescription = context.issue.body;
-
-    console.log({ context })
+    const issueDescription = context.payload.issue.body;
 
     const html = marked.marked(issueDescription);
 
