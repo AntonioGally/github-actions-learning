@@ -18,6 +18,8 @@ const formMap = {
 async function getValuesFromIssue() {
     const issueDescription = context.issue.body;
 
+    console.log({ context })
+
     const html = marked.marked(issueDescription);
 
     const $ = cheerio.load(html);
