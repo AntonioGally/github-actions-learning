@@ -2,6 +2,33 @@ const github = require('@actions/github');
 const { Octokit } = require("@octokit/core");
 
 async function run() {
+
+    const newPRBody = '## Descrição das Mudanças 🛠\r\n' +
+        '\r\n' +
+        'Por favor, descreva de forma clara e concisa as mudanças feitas.\r\n' +
+        '\r\n' +
+        '## Tipo de Release 🚀\r\n' +
+        '\r\n' +
+        '- [ ] Maintenance\r\n' +
+        '- [ ] Minor\r\n' +
+        '- [ ] Major\r\n' +
+        '\r\n' +
+        '## Deseja adicionar ao Release Notes? 📝\r\n' +
+        '\r\n' +
+        '- [ ] Não\r\n' +
+        '- [ ] Sim\r\n' +
+        '\r\n' +
+        '## Checklist de pré-review 🧢\r\n' +
+        '\r\n' +
+        '- [ ] O título do PR está descritivo e <b>sem</b> a taskID do ClickUp?\r\n' +
+        '- [ ] Fiz uma auto-revisão do meu próprio código\r\n' +
+        '- [ ] Adicionei comentários para facilitar a revisão, quando houver complexidade no código\r\n' +
+        '- [ ] Atualizei a documentação, se necessário\r\n' +
+        '\r\n' +
+        '## Observações 🔍\r\n' +
+        '\r\n' +
+        'Por favor, informe qualquer tipo de observação que possa ser importante.'
+
     try {
         const context = github.context;
         const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -10,22 +37,11 @@ async function run() {
         const owner = context.repo.owner;
         const repo = context.repo.repo;
 
-        // load the PR
-        const { data: pr } = await octokit.rest.pulls.get({
+        await octokit.request('PATCH /repos/{owner}/{repo}/pulls/{pull_number}', {
             owner,
             repo,
             pull_number: prNumber,
-        });
-
-        // Append the PR template to the existing PR body
-        const newBody = `## Descrição das Mudanças 🛠\\n\\nPor favor, descreva de forma clara e concisa as mudanças feitas.\\n\\n## Tipo de Release 🚀\\n\\n- [ ] Maintenance\\n- [ ] Minor\\n- [ ] Major\\n\\n## Deseja adicionar ao Release Notes? 📝\\n\\n- [ ] Não\\n- [ ] Sim\\n\\n## Checklist de pré-review 🧢\\n\\n- [ ] O título do PR está descritivo e <b>sem</b> a taskID do ClickUp?\\n- [ ] Fiz uma auto-revisão do meu próprio código\\n- [ ] Adicionei comentários para facilitar a revisão, quando houver complexidade no código\\n- [ ] Atualizei a documentação, se necessário\\n\\n## Observações 🔍\\n\\nPor favor, informe qualquer tipo de observação que possa ser importante.\n\n${pr.body}`;
-
-        // Update the PR description
-        await octokit.rest.pulls.update({
-            owner,
-            repo,
-            pull_number: prNumber,
-            body: newBody,
+            body: newPRBody,
         });
     } catch (error) {
         console.error(error);

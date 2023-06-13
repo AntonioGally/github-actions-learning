@@ -5,7 +5,6 @@ on:
     types:
       - opened
       - synchronize
-      - edited
 
 jobs:
   add-pr-template:
