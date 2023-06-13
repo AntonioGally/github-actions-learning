@@ -4,8 +4,6 @@ on:
   pull_request:
     types:
       - opened
-      - edited # debug only
-      - synchronize # debug only
 
 jobs:
   addPRTemplate:

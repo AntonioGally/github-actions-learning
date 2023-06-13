@@ -15,8 +15,8 @@ async function run() {
         '\r\n' +
         '## Deseja adicionar ao Release Notes? 📝\r\n' +
         '\r\n' +
-        '- [ ] Não\r\n' +
         '- [ ] Sim\r\n' +
+        '- [ ] Não\r\n' +
         '\r\n' +
         '## Checklist de pré-review 🧢\r\n' +
         '\r\n' +
