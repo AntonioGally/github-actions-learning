@@ -10,8 +10,6 @@ async function run() {
         newPRBody = data.toString()
     })
 
-    console.log("daasd", newPRBody)
-
     try {
         const context = github.context;
         const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -31,3 +29,5 @@ async function run() {
         process.exit(1);
     }
 }
+
+run()
