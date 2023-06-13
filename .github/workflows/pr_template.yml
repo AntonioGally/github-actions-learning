@@ -1,0 +1,29 @@
+name: PR Template
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - "release/**"
+
+jobs:
+  add-pr-template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Install Dependencies
+        run: npm install @actions/github
+
+      - name: Add PR Template
+        run: node .github/scripts/pr_template.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
