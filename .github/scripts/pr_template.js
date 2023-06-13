@@ -1,10 +1,10 @@
 const github = require('@actions/github');
+const { Octokit } = require("@octokit/core");
 
 async function run() {
     try {
         const context = github.context;
-        const token = process.env.GITHUB_TOKEN;
-        const octokit = github.getOctokit(token);
+        const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
         const prNumber = context.payload.pull_request.number;
         const owner = context.repo.owner;
