@@ -8,27 +8,8 @@ on:
       - synchronize # debug only
 
 jobs:
-  checkIsRelease:
-    runs-on: ubuntu-latest
-    outputs:
-      is_release: ${{ steps.check.outputs.is_release }}
-    steps:
-      - name: Check head branch name
-        id: check
-        run: |
-          echo "Head branch: ${{ github.head_ref }}"
-          if [[ "${{ github.head_ref }}" =~ ^release/ ]]; then
-            echo "The condition is true."
-            echo "is_release=true" >> $GITHUB_ENV
-          else
-            echo "The condition is false."
-            echo "is_release=false" >> $GITHUB_ENV
-          fi
-        shell: bash
-
   addPRTemplate:
-    needs: checkIsRelease
-    if: needs.checkIsRelease.outputs.is_release == 'true'
+    if: ${{github.event.pull_request.base.ref == 'main'}}
     runs-on: ubuntu-latest
 
     steps:
