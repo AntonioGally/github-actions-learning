@@ -16,9 +16,12 @@ jobs:
       - name: Check head branch name
         id: check
         run: |
-          if [[ "${{ github.head_ref }}" == release/* ]]; then
+          echo "Head branch: ${{ github.head_ref }}"
+          if [[ "${{ github.head_ref }}" =~ ^release/ ]]; then
+            echo "The condition is true."
             echo "is_release=true" >> $GITHUB_ENV
           else
+            echo "The condition is false."
             echo "is_release=false" >> $GITHUB_ENV
           fi
         shell: bash
