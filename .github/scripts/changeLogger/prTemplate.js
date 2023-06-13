@@ -10,6 +10,8 @@ async function run() {
         newPRBody = data.toString()
     })
 
+    console.log("ads", newPRBody)
+
     try {
         const context = github.context;
         const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
