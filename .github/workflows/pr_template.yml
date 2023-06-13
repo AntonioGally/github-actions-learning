@@ -13,6 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check head branch name
+        id: check
+        run: |
+          if [[ "${{ github.head_ref }}" != release/* ]]; then
+            echo "This is not a release branch. Exiting."
+            echo "::set-output name=skip::true"
+          fi
+        shell: bash
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -26,5 +35,6 @@ jobs:
 
       - name: Add PR Template
         run: node .github/scripts/pr_template.js
+        if: steps.check.outputs.skip != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
