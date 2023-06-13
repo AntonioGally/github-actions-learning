@@ -5,7 +5,12 @@ const fs = require("fs")
 async function run() {
 
     let newPRBody = "";
-    fs.readFile("../../PULL_REQUEST_TEMPLATE/release_template.md", (err, data) => { newPRBody = data.toString() })
+    fs.readFile("../../PULL_REQUEST_TEMPLATE/release_template.md", (err, data) => {
+        console.log({ data, err })
+        newPRBody = data.toString()
+    })
+
+    console.log("daasd", newPRBody)
 
     try {
         const context = github.context;
