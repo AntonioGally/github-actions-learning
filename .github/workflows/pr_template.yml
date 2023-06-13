@@ -4,6 +4,7 @@ on:
   pull_request:
     types:
       - opened
+      - synchronize
 
 jobs:
   checkIsRelease:
@@ -15,13 +16,13 @@ jobs:
         id: check
         run: |
           if [[ "${{ github.head_ref }}" == release/* ]]; then
-            echo "is_release=true" >> $GITHUB_ENV
+            echo true >> $CHECK_IS_RELEASE
           fi
         shell: bash
 
   addPRTemplate:
     needs: checkIsRelease
-    if: needs.checkIsRelease.outputs.is_release == 'true'
+    if: $CHECK_IS_RELEASE == 'true'
     runs-on: ubuntu-latest
 
     steps:
