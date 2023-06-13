@@ -4,7 +4,6 @@ on:
   pull_request:
     types:
       - opened
-      - synchronize
 
 jobs:
   addPRTemplate:
@@ -24,6 +23,6 @@ jobs:
         run: npm install @actions/github
 
       - name: Add PR Template
-        run: node .github/scripts/pr_template.js
+        run: node .github/scripts/changeLogger/prTemplate.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

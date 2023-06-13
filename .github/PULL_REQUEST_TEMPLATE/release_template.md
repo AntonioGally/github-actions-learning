@@ -1,17 +1,33 @@
-## Descrição das Mudanças 🛠
+## Título das mudanças 🛠
 
+<div id="pr-title">
+Por favor, insira um título claro e conciso sobre as mudanças feitas.
+</div>
+
+## Descrição das mudanças 🛠
+
+<div id="pr-description">
 Por favor, descreva de forma clara e concisa as mudanças feitas.
+</div>
 
 ## Tipo de Release 🚀
 
-- [ ] Maintenance
+<div id="pr-release-type">
+
+- [ ] Patch
 - [ ] Minor
 - [ ] Major
 
+</div>
+
 ## Deseja adicionar ao Release Notes? 📝
 
-- [ ] Não
+<div id="pr-release-option">
+
 - [ ] Sim
+- [ ] Não
+
+</div>
 
 ## Checklist de pré-review 🧢
 
@@ -22,4 +38,6 @@ Por favor, descreva de forma clara e concisa as mudanças feitas.
 
 ## Observações 🔍
 
+<div id="pr-observations">
 Por favor, informe qualquer tipo de observação que possa ser importante.
+</div>
