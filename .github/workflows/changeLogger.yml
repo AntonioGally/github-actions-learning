@@ -4,6 +4,7 @@ on:
   pull_request:
     types:
       - closed
+      - edited #debug only
 
 jobs:
   createReleaseJob:
