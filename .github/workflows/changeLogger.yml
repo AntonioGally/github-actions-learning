@@ -1,29 +1,29 @@
-name: PR Labeler based on commit messages
+name: Create release notes
+
 on:
   pull_request:
     types:
-      - opened
       - closed
 
 jobs:
-  labeler:
+  createReleaseJob:
     runs-on: ubuntu-latest
+    if: ${{github.event.pull_request.base.ref == 'main'}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "14"
 
       - name: Install Dependencies
         run: |
-          cd .github/scripts
-          npm install @octokit/core
-          npm install @actions/github
+          cd ./github/scripts
+          npm install marked cheerio @actions/github @octokit/core
 
-      - name: Run labeler script
-        run: node .github/scripts/labeler.js
+      - name: Process PR
+        run: node .github/scripts/changeLogger/changeLogger.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

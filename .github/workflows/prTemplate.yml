@@ -1,29 +1,28 @@
-name: PR Labeler based on commit messages
+name: PR Template
+
 on:
   pull_request:
     types:
       - opened
-      - closed
 
 jobs:
-  labeler:
+  addPRTemplate:
+    if: ${{github.event.pull_request.base.ref == 'main'}}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "14"
 
       - name: Install Dependencies
-        run: |
-          cd .github/scripts
-          npm install @octokit/core
-          npm install @actions/github
+        run: npm install @actions/github
 
-      - name: Run labeler script
-        run: node .github/scripts/labeler.js
+      - name: Add PR Template
+        run: node .github/scripts/changeLogger/prTemplate.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
