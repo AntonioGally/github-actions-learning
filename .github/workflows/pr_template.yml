@@ -4,9 +4,8 @@ on:
   pull_request:
     types:
       - opened
+      - synchronize
       - edited
-    branches:
-      - release/**
 
 jobs:
   add-pr-template:
