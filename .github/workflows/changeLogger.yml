@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd ./github/scripts
+          cd .github/scripts
           npm install marked cheerio @actions/github @octokit/core
 
       - name: Process PR
