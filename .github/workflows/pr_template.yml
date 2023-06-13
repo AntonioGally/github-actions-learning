@@ -15,12 +15,16 @@ jobs:
       - name: Check head branch name
         id: check
         run: |
-          echo "::set-output name=is_release::$(echo "${{ github.head_ref }}" | awk '/^release\// {print "true"}')"
+          if [[ "${{ github.head_ref }}" == release/* ]]; then
+            echo "is_release=true" >> $GITHUB_ENV
+          fi
+        shell: bash
 
-  AddinPRTemplate:
-    runs-on: ubuntu-latest
+  add-pr-template:
     needs: check
     if: needs.check.outputs.is_release == 'true'
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,9 +35,7 @@ jobs:
           node-version: "14"
 
       - name: Install Dependencies
-        run: |
-          cd .github/scripts
-          npm install @actions/github @octokit/core
+        run: npm install @actions/github
 
       - name: Add PR Template
         run: node .github/scripts/pr_template.js
