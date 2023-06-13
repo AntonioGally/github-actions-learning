@@ -20,8 +20,8 @@ jobs:
         shell: bash
 
   addPRTemplate:
-    needs: check
-    if: needs.check.outputs.is_release == 'true'
+    needs: checkIsRelease
+    if: needs.checkIsRelease.outputs.is_release == 'true'
     runs-on: ubuntu-latest
 
     steps:
