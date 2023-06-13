@@ -1,15 +1,13 @@
 name: PR Labeler based on commit messages
 on:
-  workflow_call:
-    inputs:
-      clickUpStatus:
-        required: true
-        type: string
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   labeler:
     runs-on: ubuntu-latest
-    if: ${{github.event.pull_request.base.ref != 'develop' && github.event.pull_request.base.ref != 'cloud002'}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
