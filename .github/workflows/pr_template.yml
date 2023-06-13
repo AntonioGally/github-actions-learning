@@ -17,13 +17,15 @@ jobs:
         id: check
         run: |
           if [[ "${{ github.head_ref }}" == release/* ]]; then
-            echo true >> $CHECK_IS_RELEASE
+            echo "is_release=true" >> $GITHUB_ENV
+          else
+            echo "is_release=false" >> $GITHUB_ENV
           fi
         shell: bash
 
   addPRTemplate:
     needs: checkIsRelease
-    if: $CHECK_IS_RELEASE == 'true'
+    if: needs.checkIsRelease.outputs.is_release == 'true'
     runs-on: ubuntu-latest
 
     steps:
