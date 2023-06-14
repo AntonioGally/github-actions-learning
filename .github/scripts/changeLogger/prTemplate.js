@@ -1,16 +1,15 @@
 const github = require('@actions/github');
 const { Octokit } = require("@octokit/core");
-const fs = require("fs")
+const fs = require("fs");
+const path = require('path');
 
 async function run() {
 
     let newPRBody = "";
-    fs.readFile("../../PULL_REQUEST_TEMPLATE/release_template.md", (err, data) => {
+    fs.readFile(path.join(__dirname, '../PULL_REQUEST_TEMPLATE/release_template.md'), (err, data) => {
         console.log({ data, err })
         newPRBody = data.toString()
     })
-
-    console.log("ads", newPRBody)
 
     try {
         const context = github.context;
