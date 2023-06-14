@@ -6,7 +6,7 @@ const path = require('path');
 async function run() {
 
     let newPRBody = "";
-    fs.readFile(path.join(__dirname, '../PULL_REQUEST_TEMPLATE/release_template.md'), (err, data) => {
+    fs.readFile(path.join(__dirname, '../../PULL_REQUEST_TEMPLATE/release_template.md'), (err, data) => {
         console.log({ data, err })
         newPRBody = data.toString()
     })
