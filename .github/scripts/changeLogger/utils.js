@@ -159,7 +159,7 @@ async function appendToChangelog(prDescInfo, prNumber, tagName, owner, repo, oct
     // Add, commit, and push the changes
     execSync('git config --global user.email "antonio.gally@gmail.com"', { stdio: 'inherit' });
     execSync('git config --global user.name "AntonioGally"', { stdio: 'inherit' });
-    execSync('git add ../../CHANGELOG.md', { stdio: 'inherit' });
+    execSync(`git add ${changelogPath}`, { stdio: 'inherit' });
     execSync('git commit -m "docs: :memo: Updating changelog"', { stdio: 'inherit' });
     execSync('git push', { stdio: 'inherit' });
 }

@@ -28,7 +28,7 @@ async function main() {
 
     prDescInfo.addToReleaseNotes && await createRelease(octokit, prDescInfo, nextVersion, owner, repo);
 
-    await appendToChangelog(prDescInfo, prNumber, "v0.2.2", owner, repo, octokit);
+    await appendToChangelog(prDescInfo, prNumber, nextVersion, owner, repo, octokit);
 }
 
 main().catch((error) => {
