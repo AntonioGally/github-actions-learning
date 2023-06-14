@@ -1,3 +1,16 @@
+## v0.2.5 (14 de jun. de 2023) 
+<p> <b> Mudando file-example.md </b> </p> 
+<p> Descrição meia bomba </p> 
+<P> Campo de observações </p> 
+
+<details> <summary><h2>Commits</h2></summary> 
+
+| Commit | Messsage | Author |
+| -- | -- | -- |
+| <a href="https://github.com/AntonioGally/github-actions-learning/commit/864b7eb9f39e2daff10cefb44de300e24cf36fb7">864b7eb</a> | Adding file changes | <img width="30px" src="https://avatars.githubusercontent.com/u/68209906?v=4"/> 
+
+</details>
+
 ## v0.2.4 (14 de jun. de 2023) 
 <p> <b> Nome dos commits e formato de data </b> </p> 
 <p> Ajustei o nome dos commits que a action faz quando atualiza o changelog.MD e alterei o formato da data também. </p> 
