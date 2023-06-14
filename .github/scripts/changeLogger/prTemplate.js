@@ -3,14 +3,9 @@ const { Octokit } = require("@octokit/core");
 const fs = require("fs");
 const path = require('path');
 
-async function run() {
-
-    let newPRBody = "";
-    fs.readFile(path.join(__dirname, '../../PULL_REQUEST_TEMPLATE/release_template.md'), (err, data) => {
-        console.log({ data, err })
-        newPRBody = data.toString()
-    })
-
+fs.readFile(path.join(__dirname, '../../PULL_REQUEST_TEMPLATE/release_template.md'), async (err, data) => {
+    console.log({ data, err })
+    let newPRBody = data.toString();
     console.log({ newPRBody })
 
     try {
@@ -31,6 +26,4 @@ async function run() {
         console.error(error);
         process.exit(1);
     }
-}
-
-run()
+})
