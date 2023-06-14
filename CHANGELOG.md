@@ -1,3 +1,16 @@
+## v0.2.4 (14 de jun. de 2023) 
+<p> <b> Nome dos commits e formato de data </b> </p> 
+<p> Ajustei o nome dos commits que a action faz quando atualiza o changelog.MD e alterei o formato da data também. </p> 
+<P>  </p> 
+
+<details> <summary><h2>Commits</h2></summary> 
+
+| Commit | Messsage | Author |
+| -- | -- | -- |
+| <a href="https://github.com/AntonioGally/github-actions-learning/commit/d31e4603d730405112aafa70f60685cacb04db1b">d31e460</a> | fix: :bug: Adjusting commit name | <img width="30px" src="https://avatars.githubusercontent.com/u/68209906?v=4"/> 
+
+</details>
+
 ## v0.2.3 (June 14, 2023) 
 <p> <b> Adicionando informações ao file-example.md </b> </p> 
 <p> Adicionei uma linha nova ao file-example.md  com o intuito de testar todo o fluxo de atualização até a release. </p> 
