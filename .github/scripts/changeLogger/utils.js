@@ -40,8 +40,8 @@ function extractInfo(prData) {
 
 function generateDate() {
     const date = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString("en-US", options);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString("pt-BR", options);
 }
 
 async function createRelease(octokit, info, tagName, owner, repo) {
@@ -154,13 +154,13 @@ async function appendToChangelog(prDescInfo, prNumber, tagName, owner, repo, oct
     const newContent = `${logInfo}\n\n${oldContent}`;
 
     // Write the new content back to the file
-    fs.writeFileSync(changelogPath, newContent, 'utf8');
+    fs.writeFileSync(changelogPath, newContent, { flag: "w" });
 
     // Add, commit, and push the changes
     execSync('git config --global user.email "antonio.gally@gmail.com"', { stdio: 'inherit' });
     execSync('git config --global user.name "AntonioGally"', { stdio: 'inherit' });
     execSync(`git add ${changelogPath}`, { stdio: 'inherit' });
-    execSync('git commit -m "docs: :memo: Updating changelog"', { stdio: 'inherit' });
+    execSync(`git commit -m "docs: :memo: Updating changelog [${tagName}]"`, { stdio: 'inherit' });
     execSync('git push', { stdio: 'inherit' });
 }
 
