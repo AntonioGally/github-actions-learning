@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd .github/scripts
-          npm install marked cheerio @actions/github @octokit/core
+          npm install marked cheerio @actions/github @octokit/core child_process
 
       - name: Process PR
         run: node .github/scripts/changeLogger/changeLogger.js

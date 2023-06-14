@@ -1,4 +1,13 @@
-function extractInfo($, prData) {
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+const marked = require('marked');
+const cheerio = require('cheerio');
+
+function extractInfo(prData) {
+    const html = marked.marked(prData.body, { mangle: false, headerIds: false });
+    const $ = cheerio.load(html);
+
     // Initialize an object to hold the extracted information
     let info = {};
 
@@ -29,23 +38,24 @@ function extractInfo($, prData) {
 }
 
 
+function generateDate() {
+    const date = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString("en-US", options);
+}
+
 async function createRelease(octokit, info, tagName, owner, repo) {
     // Create a body for the release based on the other information
     let body = `## ${info.title}\n\n`;
     body += `### ${info.description}\n\n`;
     body += `#### ${info.observations}\n\n`;
-    if (info.assignees.length > 0) body += `## Autores\n\n${info.assignees.map(data => `<div>${data.name} <br/> <img src="${data.image}" width="45px" /></div>`)}`
-
-    const date = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = date.toLocaleDateString("en-US", options);
-
+    if (info.assignees.length > 0) body += `## Autores\n\n${info.assignees.map(data => `<div>${data.name} <br/> <img src="${data.image}" width="45px"/></div>`)}`
 
     // Create the release
     const data = await octokit.request('POST /repos/{owner}/{repo}/releases', {
         owner, repo,
         tag_name: tagName,
-        name: `${tagName} (${formattedDate})`,
+        name: `${tagName} (${generateDate()})`,
         body: body,
         draft: false,
         prerelease: false,
@@ -106,6 +116,54 @@ async function createTag(octokit, owner, repo, releaseType) {
     return nextVersion;
 }
 
+function createLog(prDescInfo, commits, tagName) {
+    let body = `## ${tagName} (${generateDate()}) \n`;
+    body += `<p> <b> ${prDescInfo.title} </b> </p> \n`;
+    body += `<p> ${prDescInfo.description} </p> \n`;
+    body += `<P> ${prDescInfo.observations} </p> \n\n`;
+    body += `<details> <summary><h2>Commits</h2></summary> \n\n`
+    body += `| Commit | Messsage | Author |\n`;
+    body += `| -- | -- | -- |\n`;
+    commits.forEach(data => {
+        body += `| <a href="${data.url}">${data.minSha}</a> | ${data.message} | <img width="30px" src="${data.authorImage}"/> \n`
+    })
+    body += `\n</details>`
+    return body;
+}
+
+async function appendToChangelog(prDescInfo, prNumber, tagName, owner, repo, octokit) {
+    const commitsRequest = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', {
+        owner, repo,
+        pull_number: prNumber,
+    })
+    let commitsArray = commitsRequest.data.map((data) => ({
+        url: data.html_url,
+        minSha: data.sha.substring(0, 7),
+        message: data.commit.message,
+        authorImage: data.author.avatar_url
+    }));
+
+    const logInfo = createLog(prDescInfo, commitsArray, tagName);
+
+    const changelogPath = path.join(__dirname, '../../../CHANGELOG.md');
+
+    // Read the existing content
+    const oldContent = fs.readFileSync(changelogPath, 'utf8');
+
+    // Concatenate the new content at the beginning
+    const newContent = `${logInfo}\n\n${oldContent}`;
+
+    // Write the new content back to the file
+    fs.writeFileSync(changelogPath, newContent, 'utf8');
+
+    // Add, commit, and push the changes
+    execSync('git config --global user.email "antonio.gally@gmail.com"', { stdio: 'inherit' });
+    execSync('git config --global user.name "AntonioGally"', { stdio: 'inherit' });
+    execSync('git add ../../CHANGELOG.md', { stdio: 'inherit' });
+    execSync('git commit -m "docs: :memo: Updating changelog"', { stdio: 'inherit' });
+    execSync('git push', { stdio: 'inherit' });
+}
+
 module.exports = {
-    extractInfo, createRelease, createTag
+    extractInfo, createRelease, createTag, appendToChangelog
 }

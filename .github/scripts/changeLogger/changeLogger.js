@@ -1,8 +1,6 @@
 const github = require('@actions/github');
-const marked = require('marked');
-const cheerio = require('cheerio');
 const { Octokit } = require("@octokit/core");
-const { extractInfo, createTag, createRelease } = require("./utils");
+const { extractInfo, createTag, createRelease, appendToChangelog } = require("./utils");
 
 
 
@@ -10,7 +8,7 @@ async function main() {
     const context = github.context;
     const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-    // const prNumber = 15;
+    // const prNumber = 18;
     // const owner = "AntonioGally";
     // const repo = "github-actions-learning";
     const prNumber = context.payload.pull_request.number;
@@ -24,15 +22,13 @@ async function main() {
         pull_number: prNumber,
     });
 
-    // Extracting info from pr desc
-    const html = marked.marked(prRequest.data.body, { mangle: false, headerIds: false });
-    const $ = cheerio.load(html);
-    const info = extractInfo($, prRequest.data);
+    const prDescInfo = extractInfo(prRequest.data);
 
-    // Creating new tag version
-    const nextVersion = await createTag(octokit, owner, repo, info.releaseType);
+    const nextVersion = await createTag(octokit, owner, repo, prDescInfo.releaseType);
 
-    info.addToReleaseNotes && await createRelease(octokit, info, nextVersion, owner, repo);
+    prDescInfo.addToReleaseNotes && await createRelease(octokit, prDescInfo, nextVersion, owner, repo);
+
+    await appendToChangelog(prDescInfo, prNumber, "v0.2.2", owner, repo, octokit);
 }
 
 main().catch((error) => {
