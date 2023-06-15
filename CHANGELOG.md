@@ -1,3 +1,17 @@
+## v0.3.0 (15 de jun. de 2023) 
+<p> <b> Adicionando novo arquivo de uma grande feature </b> </p> 
+<p> Adicionei aqui um arquivo de markDown para representar uma grande feature entrando em produção. </p> 
+<P> Espero que funcione tudo tranquilo 🙏 </p> 
+
+<details> <summary><h2>Commits</h2></summary> 
+
+| Commit | Messsage | Author |
+| -- | -- | -- |
+| <a href="https://github.com/AntonioGally/github-actions-learning/commit/54a07ca200635f0a776801e66242537f0b5d0f83">54a07ca</a> | feat: :sparkles: Adding new feature file | <img width="30px" src="https://avatars.githubusercontent.com/u/68209906?v=4"/> 
+| <a href="https://github.com/AntonioGally/github-actions-learning/commit/038f5ef6cbeb41e0509b709d43a7329a138ceea6">038f5ef</a> | Merge branch 'main' into feature/new-file | <img width="30px" src="https://avatars.githubusercontent.com/u/68209906?v=4"/> 
+
+</details>
+
 ## v0.2.7 (15 de jun. de 2023) 
 <p> <b> Apenas uma alteração de bug fix </b> </p> 
 <p> Alterei a cor e o nome do file-example.md. </p> 
