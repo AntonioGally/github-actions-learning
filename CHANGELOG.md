@@ -1,3 +1,17 @@
+## v0.2.6 (15 de jun. de 2023) 
+<p> <b> Por favor, insira um título claro e conciso sobre as mudanças feitas. </b> </p> 
+<p> Por favor, descreva de forma clara e concisa as mudanças feitas. </p> 
+<P> Por favor, informe qualquer tipo de observação que possa ser importante. </p> 
+
+<details> <summary><h2>Commits</h2></summary> 
+
+| Commit | Messsage | Author |
+| -- | -- | -- |
+| <a href="https://github.com/AntonioGally/github-actions-learning/commit/df45b0bd2dfc9602caf61dce1137996cbee2194c">df45b0b</a> | fix: :bug: Changed the name and the color | <img width="30px" src="https://avatars.githubusercontent.com/u/68209906?v=4"/> 
+| <a href="https://github.com/AntonioGally/github-actions-learning/commit/2fd793fe24c10f0cd423b1d95fbf3dc645851f8a">2fd793f</a> | fix: :bug: Changed the name and the color | <img width="30px" src="https://avatars.githubusercontent.com/u/68209906?v=4"/> 
+
+</details>
+
 ## v0.2.5 (14 de jun. de 2023) 
 <p> <b> Mudando file-example.md </b> </p> 
 <p> Descrição meia bomba </p> 
