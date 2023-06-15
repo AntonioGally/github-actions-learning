@@ -1,3 +1,16 @@
+## v0.2.7 (15 de jun. de 2023) 
+<p> <b> Apenas uma alteração de bug fix </b> </p> 
+<p> Alterei a cor e o nome do file-example.md. </p> 
+<P> Nenhuma observação </p> 
+
+<details> <summary><h2>Commits</h2></summary> 
+
+| Commit | Messsage | Author |
+| -- | -- | -- |
+| <a href="https://github.com/AntonioGally/github-actions-learning/commit/7e1e5eaebf02c5843b2ee182055a442f3b9a600c">7e1e5ea</a> | fix: :bug: Adjusting color & name | <img width="30px" src="https://avatars.githubusercontent.com/u/68209906?v=4"/> 
+
+</details>
+
 ## v0.2.6 (15 de jun. de 2023) 
 <p> <b> Por favor, insira um título claro e conciso sobre as mudanças feitas. </b> </p> 
 <p> Por favor, descreva de forma clara e concisa as mudanças feitas. </p> 
