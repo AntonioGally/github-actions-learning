@@ -26,7 +26,7 @@ function extractInfo(prData) {
 
     info.title = $("#pr-title").text().trim() || "No title provided";
     info.description = $("#pr-description").text().trim() || "No description provided";
-    info.releaseType = releaseType || "maintenance";
+    info.releaseType = releaseType || "patch";
     info.addToReleaseNotes = releaseOption === "não" ? false : true;
     info.observations = $("#pr-observations").text().trim() || "";
     info.assignees = [];
