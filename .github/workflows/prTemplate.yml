@@ -1,28 +1,30 @@
-# name: PR Template
+name: PR Template
 
-# on:
-#   pull_request:
-#     types:
-#       - opened
+on:
+  pull_request:
+    branches:
+      - "none"
+    types:
+      - opened
 
-# jobs:
-#   addPRTemplate:
-#     if: ${{github.event.pull_request.base.ref == 'main'}}
-#     runs-on: ubuntu-latest
+jobs:
+  addPRTemplate:
+    if: ${{github.event.pull_request.base.ref == 'main'}}
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: "14"
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-#       - name: Install Dependencies
-#         run: npm install @actions/github
+      - name: Install Dependencies
+        run: npm install @actions/github
 
-#       - name: Add PR Template
-#         run: node .github/scripts/changeLogger/prTemplate.js
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add PR Template
+        run: node .github/scripts/changeLogger/prTemplate.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

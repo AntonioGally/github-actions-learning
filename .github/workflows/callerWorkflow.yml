@@ -7,7 +7,11 @@ on:
 
 jobs:
   calling-change-logger:
-    uses: AntonioGally/ag-workflows/.github/workflows/changeLogger.yml@main
-    with:
-      changelog-path: ../../CHANGELOG.md
-    secrets: inherit
+    runs-on: ubuntu-latest
+    name: Change logger call
+    steps:
+      - name: Calling action
+        id: action
+        uses: AntonioGally/ag-workflows/@main
+        with:
+          changelogPath: ../../CHANGELOG.md
