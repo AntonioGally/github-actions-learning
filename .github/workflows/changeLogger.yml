@@ -1,29 +1,31 @@
-# name: Create release notes
+name: Create release notes
 
-# on:
-#   pull_request:
-#     types:
-#       - closed
+on:
+  pull_request:
+    branches:
+     - "none"
+    types:
+      - closed
 
-# jobs:
-#   createReleaseJob:
-#     runs-on: ubuntu-latest
-#     if: ${{github.event.pull_request.base.ref == 'main'}}
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+jobs:
+  createReleaseJob:
+    runs-on: ubuntu-latest
+    if: ${{github.event.pull_request.base.ref == 'main'}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: "14"
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-#       - name: Install Dependencies
-#         run: |
-#           cd .github/scripts
-#           npm install marked cheerio @actions/github @octokit/core child_process
+      - name: Install Dependencies
+        run: |
+          cd .github/scripts
+          npm install marked cheerio @actions/github @octokit/core child_process
 
-#       - name: Process PR
-#         run: node .github/scripts/changeLogger/changeLogger.js
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Process PR
+        run: node .github/scripts/changeLogger/changeLogger.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

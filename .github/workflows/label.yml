@@ -1,29 +1,31 @@
-# name: PR Labeler based on commit messages
-# on:
-#   pull_request:
-#     types:
-#       - opened
-#       - closed
+name: PR Labeler based on commit messages
+on:
+  pull_request:
+    branches:
+      - "none"
+    types:
+      - opened
+      - closed
 
-# jobs:
-#   labeler:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: "14"
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-#       - name: Install Dependencies
-#         run: |
-#           cd .github/scripts
-#           npm install @octokit/core
-#           npm install @actions/github
+      - name: Install Dependencies
+        run: |
+          cd .github/scripts
+          npm install @octokit/core
+          npm install @actions/github
 
-#       - name: Run labeler script
-#         run: node .github/scripts/labeler.js
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run labeler script
+        run: node .github/scripts/labeler.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
