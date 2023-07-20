@@ -1,0 +1,13 @@
+name: Calling change logger
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  calling-change-logger:
+    uses: AntonioGally/ag-workflows/.github/workflows/changeLogger.yml@main
+    with:
+      changelog-path: ../../CHANGELOG.md
+    secrets: inherit
