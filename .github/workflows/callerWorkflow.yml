@@ -3,13 +3,17 @@ name: Calling change logger
 on:
   pull_request:
     types:
-      - closed
+      - edited
+      - synchronize
 
 jobs:
   calling-change-logger:
     runs-on: ubuntu-latest
     name: Change logger call
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Calling action
         id: action
         uses: AntonioGally/ag-workflows/@main
