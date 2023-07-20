@@ -18,4 +18,4 @@ jobs:
         id: action
         uses: AntonioGally/ag-workflows/@main
         with:
-          changelogPath: ../../CHANGELOG.md
+          changelogPath: ./CHANGELOG.md
