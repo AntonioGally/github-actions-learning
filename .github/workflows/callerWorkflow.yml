@@ -1,17 +1,26 @@
-name: Calling change logger
+name: Updating change log
 
 on:
   pull_request:
+    branches:
+      - "main"
     types:
       - closed
 
 jobs:
-  calling-change-logger:
+  updating-change-log:
     runs-on: ubuntu-latest
-    name: Change logger call
+    name: Updating change log
     steps:
-      - name: Calling action
-        id: action
-        uses: AntonioGally/ag-workflows/@main
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          changelogPath: ../../CHANGELOG.md
+          ref: main
+
+      - name: Starting changelogger 
+        id: action
+        uses: AntonioGally/ag-changelogger/@main
+        with:
+          changelogPath: ./CHANGELOG.md
+          commitUserName: AntonioGally
+          commitEmail: antonio.gally@gmail.com
