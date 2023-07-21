@@ -19,3 +19,5 @@ jobs:
         uses: AntonioGally/ag-workflows/@main
         with:
           changelogPath: ./CHANGELOG.md
+          commitUserName: AntonioGally
+          commitEmail: antonio.gally@gmail.com
