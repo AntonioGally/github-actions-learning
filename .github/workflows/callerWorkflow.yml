@@ -17,10 +17,11 @@ jobs:
         with:
           ref: main
 
-      - name: Starting changelogger 
+      - name: Run changelog CI
         id: action
-        uses: AntonioGally/ag-changelogger/@main
+        uses: saadmk11/changelog-ci@v1.1.1
         with:
-          changelogPath: ./CHANGELOG.md
-          commitUserName: AntonioGally
-          commitEmail: antonio.gally@gmail.com
+          committer_username: AntonioGally
+          committer_email: antonio.gally@gmail.com
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          config_file: changelog-ci-config.json
