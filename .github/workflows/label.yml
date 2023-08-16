@@ -1,29 +1,22 @@
-name: PR Labeler based on commit messages
+name: Labeler
+
 on:
   pull_request:
     types:
-      - opened
       - closed
+      - opened
+      - edited
 
 jobs:
-  labeler:
+  labeling-pr:
     runs-on: ubuntu-latest
+    name: Adding label to pr
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Run label CI
+        id: action
+        uses: AntonioGally/ag-pr-labeler/main
         with:
-          node-version: 16
-
-      - name: Install Dependencies
-        run: |
-          cd .github/scripts
-          npm install @octokit/core
-          npm install @actions/github
-
-      - name: Run labeler script
-        run: node .github/scripts/labeler.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
