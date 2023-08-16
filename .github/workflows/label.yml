@@ -15,8 +15,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: debug
+        run: |
+          pwd
+          ls -al
       - name: Run label CI
         id: action
-        uses: AntonioGally/ag-pr-labeler/@main
+        uses: AntonioGally/ag-pr-labeler@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
