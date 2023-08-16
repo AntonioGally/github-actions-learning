@@ -17,6 +17,6 @@ jobs:
 
       - name: Run label CI
         id: action
-        uses: AntonioGally/ag-pr-labeler/main
+        uses: AntonioGally/ag-pr-labeler/@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
