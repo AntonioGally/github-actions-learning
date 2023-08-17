@@ -22,4 +22,4 @@ jobs:
         uses: AntonioGally/ag-pr-labeler/@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          createRepoLabels: false
+          createRepoLabels: true
